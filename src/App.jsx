@@ -1,12 +1,38 @@
-import { useState } from 'react'
-import './App.css'
+import { useState } from 'react';
+import './App.css';
+import ErrorPage from './pages/ErrorPage';
+import { Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
+import axios from 'axios';
+import Navbar from './components/Navbar';
+import Homepage from './pages/HomePage';
+
+
+const URL = 'http://localhost:5005/granCanaria';
 
 export default function App() {
+
+  //recuperar los datos de la API
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    axios.get(URL)
+      .then((response) => {
+        setData(response.data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+
+  }, []);
+
   return (
-    <div className="flex items-center justify-center w-screen h-screen">
-      <h1 className="w-full text-6xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-pink-500 hover:from-pink-500 hover:to-purple-500 transition-all duration-500">
-        Hello world!
-      </h1>
+    <div>
+    <Navbar/>
+      <Routes>
+        <Route path="/" element={<Homepage data={data}/>} />
+        <Route path="*" element={<ErrorPage/>} />
+      </Routes>
     </div>
   );
 }
