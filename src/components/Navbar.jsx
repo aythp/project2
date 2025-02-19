@@ -1,15 +1,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 
 export default function Navbar() {
     return (
-        <>
-            <nav className="flex justify-between items-center p-15 bg-blue-500">
-                <Link to="/" className="text-white text-2xl ">Home</Link>
-                <Link to="/about" className="text-white text-2xl">About</Link>
-                <Link to="/contact" className="text-white text-2xl">undefined</Link>
-            </nav>
-        </>
-    )
+        <nav className="bg-blue-500 p-4">
+            <div className="container mx-auto flex justify-between items-center">
+                <Link to="/" className="text-white text-xl font-bold">
+                    Inicio
+                </Link>
+                <div className="space-x-4">
+                    <Link to="/activities" className="text-white hover:text-gray-200">
+                        Actividades
+                    </Link>
+                </div>
+            </div>
+        </nav>
+    );
 }
