@@ -11,6 +11,8 @@ export default function AddActivityForm({ placeId, onAddActivity }) {
         image: ''
     });
 
+    console.log(activity);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setActivity(prevActivity => ({
@@ -22,8 +24,7 @@ export default function AddActivityForm({ placeId, onAddActivity }) {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const updatedPlace = await addActivities(placeId, activity);
-            onAddActivity(updatedPlace);
+            onAddActivity(activity);
         } catch (error) {
             console.error("Error al agregar la actividad:", error);
         }
