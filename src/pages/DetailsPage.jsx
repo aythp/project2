@@ -34,7 +34,6 @@ export default function DetailsPage({ data, onAddActivity }) {
                 Añadir Actividad
             </button>
 
-            {/* Mostrar actividades existentes */}
             {place.activities && place.activities.length > 0 && (
                 <div className="mt-6 w-full max-w-lg">
                     <h2 className="text-xl font-semibold mb-4">Actividades</h2>
@@ -51,7 +50,7 @@ export default function DetailsPage({ data, onAddActivity }) {
             )}
 
             {showForm && (
-                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+                <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-25 z-25">
                     <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg relative">
                         <button
                             onClick={() => setShowForm(false)}

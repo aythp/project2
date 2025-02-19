@@ -31,7 +31,7 @@ export default function AddActivityForm({ placeId, onAddActivity }) {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md">
+        <form onSubmit={handleSubmit} className="max-w-lg mx-auto p-6 bg-white rounded-lg">
             <div className="mb-4">
                 <input
                     type="text"

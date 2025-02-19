@@ -40,3 +40,63 @@ export const addActivities = async (id, activity) => {
         throw error;
     }
 };
+
+export const deleteActivity = async (placeId, activityId) => {
+    try {
+        
+        if (!placeId || !activityId) {
+            throw new Error('placeId and activityId are required');
+        }
+
+        const response = await axios.get(`${URL}/${placeId}`);
+        const place = response.data;
+
+        if (!place) {
+            throw new Error(`Lugar con id ${placeId} no encontrado`);
+        }
+
+        place.activities = place.activities.filter(
+            (activity) => activity.id !== activityId
+        );
+
+        await axios.put(`${URL}/${placeId}`, place);
+        return place;
+    } catch (error) {
+        console.error('Error deleting activity:', error);
+        throw error;
+    }
+};
+
+export const updateActivity = async (placeId, activityId, updatedActivityData) => {
+    try {
+        if (!placeId || !activityId) {
+            throw new Error('placeId and activityId are required');
+        }
+
+        const response = await axios.get(`${URL}/${placeId}`);
+        const place = response.data;
+
+        if (!place) {
+            throw new Error(`Lugar con id ${placeId} no encontrado`);
+        }
+
+        const activityIndex = place.activities.findIndex(
+            (activity) => activity.id === activityId
+        );
+
+        if (activityIndex === -1) {
+            throw new Error(`Actividad con id ${activityId} no encontrada`);
+        }
+
+        place.activities[activityIndex] = {
+            ...place.activities[activityIndex],
+            ...updatedActivityData
+        };
+
+        await axios.put(`${URL}/${placeId}`, place);
+        return place;
+    } catch (error) {
+        console.error('Error updating activity:', error);
+        throw error;
+    }
+};

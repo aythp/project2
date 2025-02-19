@@ -1,9 +1,22 @@
 import React, { useState } from 'react';
 import UpdateActivityForm from '../components/UpdateActivityForm';
-/* import { deleteActivity } from '../api/Api'; */
+import { deleteActivity } from '../api/Api';
 
-export default function ActivitiesPage({ activities, onUpdateActivity }) {
+export default function ActivitiesPage({ activities, onDeleteActivity }) {
     const [selectedActivity, setSelectedActivity] = useState(null);
+
+    const handleDelete = async (placeId, activityId) => {
+        try {
+            console.log('borrando:', { placeId, activityId });
+            if (!placeId || !activityId) {
+                throw new Error('miss id');
+            }
+            await onDeleteActivity(placeId, activityId);
+        } catch (error) {
+            console.error("error deleting:", error);
+        }
+    };
+
     return (
         <div className="p-10">
             <h1 className="text-3xl font-bold mb-6">Todas las Actividades</h1>
@@ -23,7 +36,6 @@ export default function ActivitiesPage({ activities, onUpdateActivity }) {
                                 />
                             )}
 
-                            {/* Botones de Borrar y Actualizar */}
                             <div className="mt-4 flex space-x-2">
                                 <button
                                     onClick={() => handleDelete(activity.placeId, activity.id)}
@@ -45,7 +57,6 @@ export default function ActivitiesPage({ activities, onUpdateActivity }) {
                 <p className="text-gray-500">No hay actividades disponibles.</p>
             )}
 
-            {/* Mostrar el formulario de actualización si hay una actividad seleccionada */}
             {selectedActivity && (
                 <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
                     <div className="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg relative">

@@ -1,8 +1,27 @@
 import React, { useState } from 'react';
+import { updateActivity } from '../api/Api';
 
+export default function UpdateActivityForm({ placeId, activityId, initialActivity, onUpdate }) {
+    const [updatedActivity, setUpdatedActivity] = useState(initialActivity);
 
-export default function UpdateActivityForm({}) {
-    
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setUpdatedActivity(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const updatedPlace = await updateActivity(placeId, activityId, updatedActivity);
+            onUpdate(updatedPlace);
+        } catch (error) {
+            console.error('Error updating activity:', error);
+        }
+    };
+
     return (
         <form onSubmit={handleSubmit} className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md">
             <div className="mb-4">
