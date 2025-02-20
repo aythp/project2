@@ -12,9 +12,9 @@ export default function DetailsPage({ data, onAddActivity }) {
         return <div>Place not found</div>;
     }
 
-    const handleAddActivity = async (activity) => {
+    const handleAddActivity = async (placeId, activity) => {
         try {
-            await onAddActivity(place.id, activity);
+            await onAddActivity(placeId, activity);
             setShowForm(false);
         } catch (error) {
             console.error("Error al agregar la actividad:", error);
