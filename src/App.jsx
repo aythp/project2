@@ -7,6 +7,7 @@ import DetailsPage from './pages/DetailsPage';
 import ActivitiesPage from './pages/ActivitiesPage';
 import ErrorPage from './pages/ErrorPage';
 import UpdateActivityForm from './components/UpdateActivityForm';
+import AddActivityForm from './components/AddActivityForm';
 
 export default function App() {
     const [data, setData] = useState([]);

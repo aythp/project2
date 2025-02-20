@@ -8,7 +8,7 @@ export default function Navbar() {
 
     useEffect(() => {
         setIsHomepage(location.pathname === '/');
-        setIsHovered(false); // Reset hover state on route change
+        setIsHovered(false);
     }, [location.pathname]);
 
     const navbarHeight = isHomepage ? '100px' : isHovered ? '100px' : '20px';
