@@ -22,11 +22,11 @@ export default function DetailsPage({ data, onAddActivity }) {
     };
 
     return (
-        <div className="flex flex-col items-center p-10 relative">
-            <img className="w-1/3" src={place.image} alt={place.place} />
-            <h1 className="text-2xl">{place.place}</h1>
+        <div className="flex flex-col items-center p-30 relative">
+            <div className='flex flex-col items-center backdrop-filter backdrop-blur-sm bg-opacity-50 rounded-lg p-6'>
+            <h1 className="text-2xl font-bold">{place.place}</h1>
             <p className="text-lg">{place.description}</p>
-
+            </div>
             <button
                 onClick={() => setShowForm(true)}
                 className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"

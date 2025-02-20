@@ -24,17 +24,17 @@ export default function ActivitiesPage({ activities, onDeleteActivity, onUpdateA
     };
 
     return (
-        <div className="p-10">
+        <div className="p-30">
             <h1 className="text-3xl font-bold mb-6 text-center">Todas las Actividades</h1>
 
             {activities.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {activities.map((activity) => (
-                        <div key={activity.id} className="border border-gray-200 rounded-lg p-4 shadow-sm">
-                            <h2 className="text-xl font-semibold">{activity.name}</h2>
+                        <div key={activity.id} className="border border-gray-200 rounded-lg p-4 shadow-sm bg-white">
+                            <h2 className="text-xl font-bold">{activity.name}</h2>
                             <p className="text-gray-600 mt-2">{activity.description}</p>
-                            <p className="text-sm text-gray-500 mt-2">Tipo: {activity.type}</p>
-                            <p className="text-sm text-gray-500">Ubicación: {activity.ubication}</p>
+                            <p className="text-sm text-gray-500 mt-2 font-semibold">Tipo: {activity.type}</p>
+                            <p className="text-sm text-gray-500 font-semibold">Ubicación: {activity.ubication}</p>
                             {activity.image && (
                                 <img
                                     src={activity.image}

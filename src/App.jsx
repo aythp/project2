@@ -8,16 +8,35 @@ import ActivitiesPage from './pages/ActivitiesPage';
 import ErrorPage from './pages/ErrorPage';
 import UpdateActivityForm from './components/UpdateActivityForm';
 import AddActivityForm from './components/AddActivityForm';
+import loadingGif from './assets/loading.gif';
+import Footer from './components/Footer';
 
 export default function App() {
     const [data, setData] = useState([]);
     const [selectedActivity, setSelectedActivity] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
+        setIsLoading(true);
         fetchData()
-            .then((result) => setData(result))
-            .catch((error) => console.error("Error al cargar los datos:", error));
+            .then((result) => {
+                setData(result);
+                setIsLoading(false);
+            })
+            .catch((error) => {
+                console.error("Error al cargar los datos:", error);
+                setIsLoading(false);
+            });
     }, []);
+
+
+    if (isLoading) {
+        return (
+            <div className="fixed inset-0 flex items-center justify-center">
+      <img src={loadingGif} alt="Loading..." className="w-32 h-32" />
+    </div>
+        );
+    }
 
     const handleAddActivity = async (id, activity) => {
         try {
@@ -100,6 +119,7 @@ export default function App() {
                     onUpdate={handleUpdateActivity}
                 />
             )}
+            <Footer/>
         </div>
     );
 }

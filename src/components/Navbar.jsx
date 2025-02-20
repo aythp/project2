@@ -11,31 +11,25 @@ export default function Navbar() {
         setIsHovered(false);
     }, [location.pathname]);
 
-    const navbarHeight = isHomepage ? '100px' : isHovered ? '100px' : '20px';
+    const navbarHeight = isHomepage ? 'h-24' : isHovered ? 'h-24' : 'h-12';
 
     return (
         <div
             onMouseEnter={() => !isHomepage && setIsHovered(true)}
             onMouseLeave={() => !isHomepage && setIsHovered(false)}
-            style={{
-                position: 'fixed',
-                top: 0,
-                left: 0,
-                right: 0,
-                height: navbarHeight,
-                overflow: 'hidden',
-                transition: 'height 0.3s ease',
-                zIndex: 1000,
-            }}
+            className={`fixed top-0 left-0 right-0 overflow-hidden transition-all duration-300 ease-in-out z-[1000] flex justify-center ${navbarHeight}`}
         >
-            <nav className="bg-black p-4">
-                <div className="container mx-auto flex justify-center items-center">
-                    <div className="space-x-8">
-                        <Link to="/" className="text-white text-xl font-bold hover:text-gray-200">
-                            Inicio
+            <nav className="bg-gray-800 h-full rounded-b-lg">
+                <div className="h-full flex items-center px-8">
+                    <div className="flex space-x-8">
+                        <Link to="/" className="text-white text-xl font-bold hover:text-gray-200 py-2 px-4 rounded-lg hover:bg-gray-800 transition-colors duration-200">
+                            Home
                         </Link>
-                        <Link to="/activities" className="text-white text-xl font-bold hover:text-gray-200">
-                            Actividades
+                        <Link to="/activities" className="text-white text-xl font-bold hover:text-gray-200 py-2 px-4 rounded-lg hover:bg-gray-800 transition-colors duration-200">
+                            Activities
+                        </Link>
+                        <Link to="/about" className="text-white text-xl font-bold hover:text-gray-200 py-2 px-4 rounded-lg hover:bg-gray-800 transition-colors duration-200">
+                            About
                         </Link>
                     </div>
                 </div>

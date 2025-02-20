@@ -5,7 +5,7 @@ import '../App.css';
 export default function Homepage({ data }) {
     const navigate = useNavigate();
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 4;
+    const itemsPerPage = 6;
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -13,7 +13,7 @@ export default function Homepage({ data }) {
     const totalPages = Math.ceil((data?.length || 0) / itemsPerPage);
 
     return (
-        <div className='p-20'>
+        <div className='p-30'>
             <ul className="grid grid-cols-2 gap-8 max-w-6xl mx-auto">
                 {currentItems?.map((place) =>
                     <li key={place.id} className="relative overflow-hidden group"
