@@ -7,7 +7,7 @@ import DetailsPage from './pages/DetailsPage';
 import ActivitiesPage from './pages/ActivitiesPage';
 import ErrorPage from './pages/ErrorPage';
 import UpdateActivityForm from './components/UpdateActivityForm';
-import AddActivityForm from './components/AddActivityForm';
+import AboutPage from './pages/AboutPage'
 import loadingGif from './assets/loading.gif';
 import Footer from './components/Footer';
 
@@ -109,6 +109,8 @@ export default function App() {
                     />}
                 />
                 <Route path="*" element={<ErrorPage />} />
+
+                <Route path="/about" element={<AboutPage />} />
             </Routes>
 
             {selectedActivity && (
