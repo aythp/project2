@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
 export default function Navbar() {
     const location = useLocation();
-    const isHomepage = location.pathname === '/';
+    const [isHomepage, setIsHomepage] = useState(location.pathname === '/');
     const [isHovered, setIsHovered] = useState(false);
+
+    useEffect(() => {
+        setIsHomepage(location.pathname === '/');
+        setIsHovered(false); // Reset hover state on route change
+    }, [location.pathname]);
 
     const navbarHeight = isHomepage ? '100px' : isHovered ? '100px' : '20px';
 
@@ -24,12 +29,12 @@ export default function Navbar() {
             }}
         >
             <nav className="bg-black p-4">
-                <div className="container mx-auto flex justify-between items-center">
-                    <Link to="/" className="text-white text-xl font-bold">
-                        Inicio
-                    </Link>
-                    <div className="space-x-4">
-                        <Link to="/activities" className="text-white hover:text-gray-200 font-bold">
+                <div className="container mx-auto flex justify-center items-center">
+                    <div className="space-x-8">
+                        <Link to="/" className="text-white text-xl font-bold hover:text-gray-200">
+                            Inicio
+                        </Link>
+                        <Link to="/activities" className="text-white text-xl font-bold hover:text-gray-200">
                             Actividades
                         </Link>
                     </div>
