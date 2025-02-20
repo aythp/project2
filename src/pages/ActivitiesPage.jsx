@@ -1,11 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useState} from 'react';
 import UpdateActivityForm from '../components/UpdateActivityForm';
 
 export default function ActivitiesPage({ activities, onDeleteActivity, onUpdateActivity }) {
     const [selectedActivity, setSelectedActivity] = useState(null);
     const [currentPage, setCurrentPage] = useState(1);
     const itemsPerPage = 6;
-    const formRef = useRef(null);
 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
@@ -52,7 +51,7 @@ export default function ActivitiesPage({ activities, onDeleteActivity, onUpdateA
                             <div className="mt-4 flex space-x-2">
                                 <button
                                     onClick={() => setSelectedActivity(activity)}
-                                    className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
+                                    className="px-4 py-2 bg-gray-700 text-white rounded-md hover:bg-blue-600"
                                 >
                                     Actualizar
                                 </button>

@@ -35,7 +35,7 @@ export default function AddActivityForm({ placeId, onAddActivity }) {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="max-w-lg mx-auto p-8 bg-white rounded-lg shadow-xl">
+        <form onSubmit={handleSubmit} className="max-w-lg mx-auto p-8 bg-gray backdrop-blur-md rounded-lg shadow-xl border border-gray-200">
             <div className="mb-4">
                 <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
                     Nombre
@@ -103,7 +103,7 @@ export default function AddActivityForm({ placeId, onAddActivity }) {
             </div>
             <button
                 type="submit"
-                className="w-full px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                className="w-full px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors duration-200"
             >
                 Agregar Actividad
             </button>

@@ -8,7 +8,7 @@ export default function DetailsPage({ data, onAddActivity }) {
     const place = data.find((place) => place.id === parseInt(id));
     const [showForm, setShowForm] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 6;
+    const itemsPerPage = 4;
 
     if (!place) {
         return <div>Place not found</div>;
@@ -31,18 +31,18 @@ export default function DetailsPage({ data, onAddActivity }) {
     return (
 
         <div className="p-25">
-            <div className="flex flex-col items-center backdrop-filter backdrop-blur-sm bg-opacity-75 rounded-lg p-6 mb-6">
-                <h1 className="text-2xl font-bold">{place.place}</h1>
-                <p className="text-lg w-100">{place.description}</p>
-            </div>
-            <div className="flex justify-center">
-                <button
-                    onClick={() => setShowForm(true)}
-                    className="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                >
-                    Añadir Actividad
-                </button>
-            </div>
+    <div className="flex flex-col items-center justify-center backdrop-filter backdrop-blur-sm bg-white/80 rounded-lg p-6 mb-6 max-w-3xl mx-auto">
+        <h1 className="text-2xl font-bold">{place.place}</h1>
+        <p className="text-lg">{place.description}</p>
+    </div>
+    <div className="flex justify-center">
+        <button
+            onClick={() => setShowForm(true)}
+            className="mt-4 px-4 py-2 bg-gray-800 text-white rounded-md hover:bg-blue-600 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
+            Añadir Actividad
+        </button>
+    </div>
 
             {currentItems.length > 0 && (
                 <div className="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
