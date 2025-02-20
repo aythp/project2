@@ -1,10 +1,19 @@
 import React, { useState } from 'react';
 import UpdateActivityForm from '../components/UpdateActivityForm';
 
-export default function ActivitiesPage({ activities, onDeleteActivity}) {
+export default function ActivitiesPage({ activities, onDeleteActivity, onUpdateActivity }) {
     const [selectedActivity, setSelectedActivity] = useState(null);
-    
-    const placeId = 1; 
+
+    const placeId = 1;
+
+    const handleUpdateActivity = async (placeId, activityId, updatedData) => {
+        try {
+            await onUpdateActivity(placeId, activityId, updatedData);
+            setSelectedActivity(null);
+        } catch (error) {
+            console.error("Error updating activity:", error);
+        }
+    };
 
     const handleDelete = async (placeId, activityId) => {
         try {
@@ -16,7 +25,7 @@ export default function ActivitiesPage({ activities, onDeleteActivity}) {
 
     return (
         <div className="p-10">
-            <h1 className="text-3xl font-bold mb-6">Todas las Actividades</h1>
+            <h1 className="text-3xl font-bold mb-6 text-center">Todas las Actividades</h1>
 
             {activities.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -52,7 +61,7 @@ export default function ActivitiesPage({ activities, onDeleteActivity}) {
                     ))}
                 </div>
             ) : (
-                <p className="text-gray-500">No hay actividades disponibles.</p>
+                <p className="text-gray-500 text-center">No hay actividades disponibles.</p>
             )}
 
             {selectedActivity && (
@@ -62,13 +71,13 @@ export default function ActivitiesPage({ activities, onDeleteActivity}) {
                             onClick={() => setSelectedActivity(null)}
                             className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
                         >
-                            &times; 
+                            &times;
                         </button>
                         <UpdateActivityForm
                             placeId={selectedActivity.placeId}
                             activityId={selectedActivity.id}
                             initialActivity={selectedActivity}
-                            onUpdate={onUpdateActivity}
+                            onUpdate={handleUpdateActivity}
                             onClose={() => setSelectedActivity(null)}
                         />
                     </div>
