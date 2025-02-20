@@ -47,7 +47,7 @@ export default function Homepage({ data }) {
                     Anterior
                 </button>
                 <span className="flex items-center px-4">
-                    Página {currentPage} de {totalPages}
+                     {currentPage} de {totalPages}
                 </span>
                 <button
                     onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}

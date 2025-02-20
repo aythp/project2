@@ -22,14 +22,24 @@ export default function AddActivityForm({ placeId, onAddActivity }) {
         e.preventDefault();
         try {
             await onAddActivity(placeId, activity);
+            setActivity({ 
+                name: '',
+                description: '',
+                type: '',
+                ubication: '',
+                image: ''
+            });
         } catch (error) {
             console.error("Error al agregar la actividad:", error);
         }
     };
 
     return (
-        <form onSubmit={handleSubmit} className="max-w-lg mx-auto p-6 bg-white rounded-lg">
+        <form onSubmit={handleSubmit} className="max-w-lg mx-auto p-8 bg-white rounded-lg shadow-xl">
             <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="name">
+                    Nombre
+                </label>
                 <input
                     type="text"
                     name="name"
@@ -40,16 +50,22 @@ export default function AddActivityForm({ placeId, onAddActivity }) {
                 />
             </div>
             <div className="mb-4">
-                <input
-                    type="text"
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="description">
+                    Descripción
+                </label>
+                <textarea
                     name="description"
                     value={activity.description}
                     placeholder="Descripción"
                     onChange={handleChange}
                     className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    rows="4"
                 />
             </div>
             <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="type">
+                    Tipo
+                </label>
                 <input
                     type="text"
                     name="type"
@@ -60,6 +76,9 @@ export default function AddActivityForm({ placeId, onAddActivity }) {
                 />
             </div>
             <div className="mb-4">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="ubication">
+                    Ubicación
+                </label>
                 <input
                     type="text"
                     name="ubication"
@@ -70,6 +89,9 @@ export default function AddActivityForm({ placeId, onAddActivity }) {
                 />
             </div>
             <div className="mb-6">
+                <label className="block text-gray-700 text-sm font-bold mb-2" htmlFor="image">
+                    URL de la imagen
+                </label>
                 <input
                     type="text"
                     name="image"
