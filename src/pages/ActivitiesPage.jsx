@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import UpdateActivityForm from '../components/UpdateActivityForm';
+import AddActivityForm from '../components/AddActivityForm';
 import { deleteActivity } from '../api/Api';
 
-export default function ActivitiesPage({ activities, onDeleteActivity }) {
+export default function ActivitiesPage({ activities, onDeleteActivity, onAddActivity }) {
     const [selectedActivity, setSelectedActivity] = useState(null);
+    const [showAddForm, setShowAddForm] = useState(false);
+
+    const placeId = 1; 
 
     const handleDelete = async (placeId, activityId) => {
         try {
-            console.log('borrando:', { placeId, activityId });
-            if (!placeId || !activityId) {
-                throw new Error('miss id');
-            }
             await onDeleteActivity(placeId, activityId);
         } catch (error) {
             console.error("error deleting:", error);
@@ -20,6 +20,20 @@ export default function ActivitiesPage({ activities, onDeleteActivity }) {
     return (
         <div className="p-10">
             <h1 className="text-3xl font-bold mb-6">Todas las Actividades</h1>
+
+            <button
+                onClick={() => setShowAddForm(!showAddForm)}
+                className="mb-6 px-4 py-2 bg-green-500 text-white rounded-md hover:bg-green-600"
+            >
+                {showAddForm ? "Ocultar formulario" : "Agregar nueva actividad"}
+            </button>
+
+            {showAddForm && (
+                <div className="mb-6">
+                    <AddActivityForm placeId={placeId} onAddActivity={onAddActivity} />
+                </div>
+            )}
+
             {activities.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {activities.map((activity) => (
@@ -64,12 +78,14 @@ export default function ActivitiesPage({ activities, onDeleteActivity }) {
                             onClick={() => setSelectedActivity(null)}
                             className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
                         >
-                            &times; {/* Icono de cierre */}
+                            &times; 
                         </button>
                         <UpdateActivityForm
-                            activity={selectedActivity}
+                            placeId={selectedActivity.placeId}
+                            activityId={selectedActivity.id}
+                            initialActivity={selectedActivity}
+                            onUpdate={onUpdateActivity}
                             onClose={() => setSelectedActivity(null)}
-                            onUpdateActivity={onUpdateActivity}
                         />
                     </div>
                 </div>

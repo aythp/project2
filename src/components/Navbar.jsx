@@ -23,7 +23,7 @@ export default function Navbar() {
                 zIndex: 1000,
             }}
         >
-            <nav className="bg-blue-500 p-4">
+            <nav className="bg-black p-4">
                 <div className="container mx-auto flex justify-between items-center">
                     <Link to="/" className="text-white text-xl font-bold">
                         Inicio

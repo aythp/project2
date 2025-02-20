@@ -26,6 +26,7 @@ export default function App() {
                     place.id === id ? updatedPlace : place
                 )
             );
+            window.location.reload();
         } catch (error) {
             console.error("Error al agregar la actividad:", error);
         }
@@ -43,6 +44,7 @@ export default function App() {
                 }
                 return place;
             }));
+            window.location.reload();
         } catch (error) {
             console.error("Error al eliminar la actividad:", error);
         }
@@ -57,6 +59,7 @@ export default function App() {
                 )
             );
             setSelectedActivity(null);
+            window.location.reload();
         } catch (error) {
             console.error("Error al actualizar la actividad:", error);
         }
@@ -72,18 +75,19 @@ export default function App() {
                     element={<DetailsPage data={data} onAddActivity={handleAddActivity} />}
                 />
                 <Route
-    path="/activities"
-    element={<ActivitiesPage
-        activities={data.flatMap(place =>
-            place.activities.map(activity => ({
-                ...activity,
-                placeId: place.id
-            }))
-        )}
-        onDeleteActivity={handleDeleteActivity}
-        onUpdateActivity={handleUpdateActivity}
-    />}
-/>
+                    path="/activities"
+                    element={<ActivitiesPage
+                        activities={data.flatMap(place =>
+                            place.activities.map(activity => ({
+                                ...activity,
+                                placeId: place.id
+                            }))
+                        )}
+                        onDeleteActivity={handleDeleteActivity}
+                        onUpdateActivity={handleUpdateActivity}
+                        onAddActivity={handleAddActivity}
+                    />}
+                />
                 <Route path="*" element={<ErrorPage />} />
             </Routes>
 

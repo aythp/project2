@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { updateActivity } from '../api/Api';
 
-export default function UpdateActivityForm({ placeId, activityId, initialActivity, onUpdate }) {
+export default function UpdateActivityForm({ placeId, activityId, initialActivity, onUpdate, onClose }) {
     const [updatedActivity, setUpdatedActivity] = useState(initialActivity);
 
     const handleChange = (e) => {
@@ -15,8 +15,7 @@ export default function UpdateActivityForm({ placeId, activityId, initialActivit
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const updatedPlace = await updateActivity(placeId, activityId, updatedActivity);
-            onUpdate(updatedPlace);
+            await onUpdate(placeId, activityId, updatedActivity);
         } catch (error) {
             console.error('Error updating activity:', error);
         }
