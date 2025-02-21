@@ -13,3 +13,5 @@ Es una aplicación web que permite a los usuarios:
 · Añadir nuevas actividades a lugares específicos.
 · Actualizar o eliminar actividades existentes.
 No usa ninguna API real.
+
+NO ME HAGO RESPONSABLE DE CUALQUIER MAL USO. 
