@@ -8,7 +8,7 @@ export default function DetailsPage({ data, onAddActivity }) {
     const place = data.find((place) => place.id === parseInt(id));
     const [showForm, setShowForm] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
-    const itemsPerPage = 4;
+    const itemsPerPage = 6;
 
     if (!place) {
         return <div>Place not found</div>;
