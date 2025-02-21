@@ -1,5 +1,5 @@
 import axios from 'axios';
-const URL = 'http://localhost:5005/granCanaria';
+const URL = `${import.meta.env.VITE_BACK_URL}/granCanaria`;
 import { v4 as uuidv4 } from 'uuid';
 
 export const fetchData = async () => {
